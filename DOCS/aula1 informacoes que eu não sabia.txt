@@ -1,0 +1,28 @@
+<FlyoutItem Title="nomeNoFlyout"> // primeiro item do flyout
+	<tab Title="tituloDaPagina">
+		<Page:main title="tituloDaPagina">
+	</tab>
+</FlyoutItem>
+
+<FlyoutItem Title="nomeNoFlyout"> // segundo item do flyout
+	<tab Title="comprar"> // essa pagina vai ter 2 tabs no top
+		<Page:main title="tituloDaPagina">         // se tiver 2 page em 1 tab eles vão estar no topo
+		<Page:main title="tituloDaPagina">
+	</tab>
+	
+	<tab Title="tituloDaPagina"> // e 2 tabs em baixo
+		<Page:main title="tituloDaPagina">   // se as tabs estiverem separadas elas vao estar em baixo
+	</tab>
+	<tab Title="tituloDaPagina">
+		<Page:main title="tituloDaPagina">
+	</tab>
+</FlyoutItem>
+
+===============================================================================
+
+Carregar pagina apenas quando aberta
+
+<tab>
+	<ShellContent ContentTemplate="{DataTemplate shellmarin:Page2}"/>
+</tab>
+

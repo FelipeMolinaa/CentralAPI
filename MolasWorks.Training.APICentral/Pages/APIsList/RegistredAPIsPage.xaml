@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MolasWorks.Training.APICentral.Pages.APIsList.RegistredAPIsPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ListView ItemsSource="{Binding APIsCadastradas}"/>
+            <Button 
+                Text="+"
+                CornerRadius="100"
+                FontSize="40"
+                WidthRequest="70"
+                HeightRequest="70"
+                BackgroundColor="{DynamicResource primary-back-title-color}"
+                AbsoluteLayout.LayoutBounds=".92,.97"
+                Padding="0,0,1,3"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Clicked="Button_Clicked"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

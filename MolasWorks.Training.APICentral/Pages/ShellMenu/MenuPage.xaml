@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="MolasWorks.Training.APICentral.Pages.MenuPage"
+        xmlns:controls="clr-namespace:MolasWorks.Training.APICentral.Controls"
+        xmlns:APIsList="clr-namespace:MolasWorks.Training.APICentral.Pages.APIsList"
+        xmlns:Pages="clr-namespace:MolasWorks.Training.APICentral.Pages"
+        Title="Menu" BackgroundColor="{DynamicResource primary-back-title-color}">
+
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="APIs">
+        <Tab Title="Minhas APIs">
+            <APIsList:RegistredAPIsPage Title="Minhas APIs Cadastradas"/>
+        </Tab>
+        <Tab Title="APIs Publicas">
+            <!--<APIsList:PublicApiList Title="APIs Publicas"/>-->
+            <ShellContent Title="APIs Publicas">
+                <APIsList:PublicApiList Title="APIs Publicas"/>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="WorkBench">
+        <Tab Title="WorkBench">
+            <Pages:WorkBenchPage Title="WorkBench"/>
+        </Tab>
+    </FlyoutItem>
+</Shell>
