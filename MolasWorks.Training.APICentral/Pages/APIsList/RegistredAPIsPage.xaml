@@ -1,21 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MolasWorks.Training.APICentral.Pages.APIsList.RegistredAPIsPage">
+             x:Class="MolasWorks.Training.APICentral.Pages.APIsList.RegistredAPIsPage"
+             xmlns:vm="clr-namespace:MolasWorks.Training.APICentral.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:RegistredAPIsViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <AbsoluteLayout>
-            <ListView ItemsSource="{Binding APIsCadastradas}"/>
+            <ListView ItemsSource="{Binding APIsCadastradas}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="20">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding API}" 
+                                           FontSize="25" 
+                                           FontAttributes="Bold" 
+                                           HorizontalOptions="StartAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding Auth}" 
+                                           FontSize="20" 
+                                           HorizontalOptions="EndAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="{Binding Description}" 
+                                           FontSize="20" 
+                                           VerticalOptions="CenterAndExpand"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="2"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Button 
+                Style="{DynamicResource FABStyle}"
                 Text="+"
-                CornerRadius="100"
-                FontSize="40"
-                WidthRequest="70"
-                HeightRequest="70"
-                BackgroundColor="{DynamicResource primary-back-title-color}"
-                AbsoluteLayout.LayoutBounds=".92,.97"
-                Padding="0,0,1,3"
+                AbsoluteLayout.LayoutBounds="1,1"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                Clicked="Button_Clicked"/>
+                Command="{Binding GotoInsertAPIPage}"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

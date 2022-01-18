@@ -4,9 +4,22 @@
              x:Class="MolasWorks.Training.APICentral.Pages.WorkBenchPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="aqui é a workBench"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Entry Placeholder="API URL" Text="{Binding URLEntry}"/>
+            <Button 
+                    Text="Consult"
+                    AbsoluteLayout.LayoutBounds="1,1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Command="{Binding InsertPublicAPI}"
+                />
+            <ScrollView VerticalOptions="FillAndExpand">
+                <Label HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand" 
+                   BackgroundColor="#C6C6C6" 
+                   Text="{Binding ResponseLabel}"
+                   TextColor="black"
+                   FontSize="20"
+                   Padding="10"/>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

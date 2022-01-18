@@ -1,11 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MolasWorks.Training.APICentral.Pages.APIsList.PublicApiList">
+             x:Class="MolasWorks.Training.APICentral.Pages.APIsList.PublicApiListPage"
+             xmlns:vm="clr-namespace:MolasWorks.Training.APICentral.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:PublicApiListViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
             <ListView ItemsSource="{Binding PublicAPIs.entries}"
-                      Refreshing="ListView_Refreshing"/>
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                      ItemTapped="ListView_ItemTapped"
+                      Refreshing="ListView_Refreshing"
+                      IsRefreshing="{Binding ListIsRefreshing}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="20">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding API}" 
+                                           FontSize="25" 
+                                           FontAttributes="Bold" 
+                                           HorizontalOptions="StartAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding Auth}" 
+                                           FontSize="20" 
+                                           HorizontalOptions="EndAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="{Binding Description}" 
+                                           FontSize="20" 
+                                           VerticalOptions="CenterAndExpand"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="2"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

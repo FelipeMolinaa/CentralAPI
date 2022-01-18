@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MolasWorks.Training.APICentral.Controls.FlyoutHeader"
+             x:Class="MolasWorks.Training.APICentral.Controls.ShellControls.FlyoutHeader"
              HeightRequest="100">
     <Grid BackgroundColor="{StaticResource Key=primary-back-title-color}">
-        <Label Text="CentralAPI" FontSize="50" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Label Text="CentralAPI" FontSize="50" HorizontalOptions="Center" VerticalOptions="Center"
+               TextColor="#fff"/>
     </Grid>
 </ContentView>

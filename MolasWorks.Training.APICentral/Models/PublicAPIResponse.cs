@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace MolasWorks.Training.APICentral.ConsumingApi
+namespace MolasWorks.Training.APICentral.Models
 {
     public class PublicAPIResponse
     {

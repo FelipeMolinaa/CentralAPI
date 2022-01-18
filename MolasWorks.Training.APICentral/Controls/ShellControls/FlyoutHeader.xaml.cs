@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MolasWorks.Training.APICentral.Pages.APIsList
+namespace MolasWorks.Training.APICentral.Controls.ShellControls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class InsertApiPage : ContentPage
+    public partial class FlyoutHeader : ContentView
     {
-        
-        public InsertApiPage()
+        public FlyoutHeader()
         {
             InitializeComponent();
         }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MolasWorks.Training.APICentral.Controls
+namespace MolasWorks.Training.APICentral.Themes
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FlyoutHeader : ContentView
+    public partial class DarkTheme : ResourceDictionary
     {
-        public FlyoutHeader()
+        public DarkTheme()
         {
             InitializeComponent();
         }

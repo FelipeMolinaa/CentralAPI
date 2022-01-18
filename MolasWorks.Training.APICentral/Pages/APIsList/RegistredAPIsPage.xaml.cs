@@ -1,4 +1,5 @@
-﻿using MolasWorks.Training.APICentral.ConsumingApi;
+﻿using MolasWorks.Training.APICentral.Models;
+using MolasWorks.Training.APICentral.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,19 +15,29 @@ namespace MolasWorks.Training.APICentral.Pages.APIsList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegistredAPIsPage : ContentPage
     {
-        public ObservableCollection<APIEntity> APIsCadastradas { get; set; }
+        private readonly RegistredAPIsViewModel _registredAPIsPageModel;
+
         public RegistredAPIsPage()
         {
             InitializeComponent();
 
-            APIsCadastradas = new ObservableCollection<APIEntity>();
-
-            BindingContext = this;
+            _registredAPIsPageModel = new RegistredAPIsViewModel();
+            BindingContext = _registredAPIsPageModel;
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            Shell.Current.GoToAsync(nameof(InsertApiPage));
+            base.OnAppearing();
+            _registredAPIsPageModel.APIsCadastradas = 
+                new ObservableCollection<APIEntity>(App.PublicApiDAORepository.GetAll().Result);
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null) return;
+            var api = e.Item as APIEntity;
+            Shell.Current.GoToAsync($"{nameof(ApiDetailPage)}?APIName={api.API}");
+            if (sender is ListView lv) lv.SelectedItem = null;
         }
     }
 }

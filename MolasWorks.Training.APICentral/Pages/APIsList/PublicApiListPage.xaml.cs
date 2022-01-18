@@ -1,43 +1,45 @@
-﻿using MolasWorks.Training.APICentral.AppServices;
-using MolasWorks.Training.APICentral.AppServices.Interfaces;
-using MolasWorks.Training.APICentral.ConsumingApi;
-using MolasWorks.Training.APICentral.Services.Interfaces;
-using Refit;
+﻿using MolasWorks.Training.APICentral.Models;
+using MolasWorks.Training.APICentral.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MolasWorks.Training.APICentral.Pages.APIsList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PublicApiList : ContentPage
+    public partial class PublicApiListPage : ContentPage
     {
-        private readonly PublicAPIAppService _PublicAPIAppService;
+        private PublicApiListViewModel _publicApiListViewModel;
 
-        public PublicAPIResponse PublicAPIs { get; set; }
-
-        public PublicApiList()
+        public PublicApiListPage()
         {
             InitializeComponent();
-            _PublicAPIAppService = new PublicAPIAppService("https://api.publicapis.org");
-            BindingContext = this;
+            _publicApiListViewModel = new PublicApiListViewModel();
+            BindingContext = _publicApiListViewModel;
         }
 
         protected override async void OnAppearing()
         {
-            //PublicAPIs = await _PublicAPIAppService.GetAll();
-
             base.OnAppearing();
+            _publicApiListViewModel.ListIsRefreshing = true;
+            _publicApiListViewModel.PublicAPIs = await _publicApiListViewModel.PublicAPIRepository.GetAll();
+            _publicApiListViewModel.ListIsRefreshing = false;
+            //TODO Adicionar Toast
         }
 
         private async void ListView_Refreshing(object sender, EventArgs e)
         {
-            //PublicAPIs = await _PublicAPIAppService.GetAll();
+            _publicApiListViewModel.PublicAPIs = await _publicApiListViewModel.PublicAPIRepository.GetAll();
+            _publicApiListViewModel.ListIsRefreshing = false;
+            //TODO Adicionar Toast
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null) return;
+            var api = e.Item as APIEntity;
+            Shell.Current.GoToAsync($"{nameof(ApiDetailPage)}?APIName={api.API}");
+            if (sender is ListView lv) lv.SelectedItem = null;
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MolasWorks.Training.APICentral.Pages
+namespace MolasWorks.Training.APICentral.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPage : Shell
@@ -18,6 +18,7 @@ namespace MolasWorks.Training.APICentral.Pages
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(InsertApiPage), typeof(InsertApiPage));
+            Routing.RegisterRoute(nameof(ApiDetailPage), typeof(ApiDetailPage));
         }
     }
 }
